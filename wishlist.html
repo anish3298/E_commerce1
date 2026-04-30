@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wishlist - AnishShop</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="toast" id="toast"></div>
+  <header class="navbar sticky">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">ANISH<span>Shop</span></a>
+      <div class="search-bar">
+        <input id="searchInput" type="search" placeholder="Search products..." autocomplete="off" />
+        <div class="suggestions" id="suggestions"></div>
+      </div>
+      <div class="nav-links">
+        <a href="wishlist.html" class="nav-button">Wishlist</a>
+        <a href="order-history.html" class="nav-button">Orders</a>
+        <a href="#authModal" class="nav-button" id="loginTrigger">Login / Register</a>
+        <a href="cart.html" class="nav-button">Cart <span id="cartCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>My Wishlist</h2>
+        <p>Save products to buy later.</p>
+      </div>
+      <div id="wishlistGrid" class="product-grid"></div>
+      <div id="wishlistEmpty" class="empty-state" hidden>
+        <h3>Your wishlist is empty</h3>
+        <p>Add products to wishlist while browsing the store.</p>
+        <a href="products.html" class="button button--primary">Browse products</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>About AnishShop</h3>
+        <p>Premium shopping with a wishlist built for you.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">×</button>
+      <div class="auth-tabs">
+        <button data-tab="login" class="tab active">Login</button>
+        <button data-tab="register" class="tab">Register</button>
+      </div>
+      <form id="authForm" class="auth-form"></form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/wishlist.js"></script>
+</body>
+</html>

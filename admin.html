@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - AnishShop</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="toast" id="toast"></div>
+  <header class="navbar sticky">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">ANISH<span>Shop</span></a>
+      <div class="nav-links">
+        <a href="wishlist.html" class="nav-button">Wishlist</a>
+        <a href="order-history.html" class="nav-button">Orders</a>
+        <a href="#authModal" class="nav-button" id="loginTrigger">Login / Register</a>
+        <a href="cart.html" class="nav-button">Cart <span id="cartCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Admin dashboard</h2>
+        <a href="products.html" class="button button--secondary">View store</a>
+      </div>
+      <div class="grid-3 gap-xl">
+        <div class="feature-card">
+          <span>Total sales</span>
+          <h3 id="totalSales">₹0</h3>
+        </div>
+        <div class="feature-card">
+          <span>Orders count</span>
+          <h3 id="orderCount">0</h3>
+        </div>
+        <div class="feature-card">
+          <span>Customers</span>
+          <h3 id="customerCount">0</h3>
+        </div>
+      </div>
+      <section class="section--pale">
+        <div class="product-grid" id="topProducts"></div>
+      </section>
+      <section class="section--pale product-admin-section">
+        <div class="section-header">
+          <h2>Product management</h2>
+          <button id="resetProduct" class="button button--secondary">Reset product form</button>
+        </div>
+        <div class="product-admin-panel">
+          <form id="productForm" class="product-form">
+            <div class="form-grid">
+              <label>
+                Product name
+                <input id="productName" name="name" type="text" placeholder="Wireless speaker" required />
+              </label>
+              <label>
+                Price
+                <input id="productPrice" name="price" type="number" min="0" step="0.01" placeholder="1999" required />
+              </label>
+              <label>
+                Category
+                <select id="productCategory" name="category" required>
+                  <option value="">Select category</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Smart Home">Smart Home</option>
+                  <option value="Office">Office</option>
+                  <option value="Wearables">Wearables</option>
+                  <option value="Gaming">Gaming</option>
+                  <option value="Home">Home</option>
+                </select>
+              </label>
+              <label>
+                Rating
+                <input id="productRating" name="rating" type="number" min="0" max="5" step="0.1" placeholder="4.5" required />
+              </label>
+              <label>
+                Stock
+                <input id="productStock" name="stock" type="number" min="0" step="1" placeholder="100" required />
+              </label>
+              <label>
+                Image URL
+                <input id="productImage" name="image" type="text" placeholder="https://...jpg" required />
+              </label>
+              <label class="full-width">
+                Description
+                <textarea id="productDescription" name="description" rows="4" placeholder="Product details..." required></textarea>
+              </label>
+            </div>
+            <div class="product-form-actions">
+              <button type="submit" class="button button--primary">Save product</button>
+            </div>
+            <p class="admin-message" id="productAdminMessage"></p>
+          </form>
+          <div class="product-list-wrapper">
+            <table class="product-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productList"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section--pale coupon-admin-section">
+        <div class="section-header">
+          <h2>Coupon management</h2>
+          <button id="resetCoupon" class="button button--secondary">Reset form</button>
+        </div>
+        <div class="coupon-admin-panel">
+          <form id="couponForm" class="coupon-form">
+            <div class="form-grid">
+              <label>
+                Coupon code
+                <input id="couponCode" name="code" type="text" placeholder="SAVE10" required />
+              </label>
+              <label>
+                Discount (%)
+                <input id="couponDiscount" name="discount_percent" type="number" min="1" max="100" step="0.1" placeholder="10" required />
+              </label>
+              <label>
+                Minimum order
+                <input id="couponMinTotal" name="min_total" type="number" min="0" step="0.01" placeholder="50" required />
+              </label>
+              <label>
+                Expires at
+                <input id="couponExpires" name="expires_at" type="date" />
+              </label>
+              <label class="checkbox-label">
+                <input id="couponActive" name="active" type="checkbox" checked /> Active
+              </label>
+            </div>
+            <div class="coupon-form-actions">
+              <button type="submit" class="button button--primary">Save coupon</button>
+              <button type="button" id="deleteCouponButton" class="button button--secondary">Delete coupon</button>
+            </div>
+            <p class="coupon-note" id="couponAdminMessage"></p>
+          </form>
+          <div class="coupon-list-wrapper">
+            <table class="coupon-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Discount</th>
+                  <th>Min total</th>
+                  <th>Expires</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="couponList"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">×</button>
+      <div class="auth-tabs">
+        <button data-tab="login" class="tab active">Login</button>
+        <button data-tab="register" class="tab">Register</button>
+      </div>
+      <form id="authForm" class="auth-form"></form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
